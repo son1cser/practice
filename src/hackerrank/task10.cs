@@ -1,23 +1,15 @@
 using System;
-using System.Collections.Generic;
 
 namespace HackerRank
 {
     public class Result
     {
-        public static int diagonalDifference(List<List<int>> arr)
+        public static int pageCount(int n, int p)
         {
-            int primarySum = 0;
-            int secondarySum = 0;
-            int n = arr.Count;
+            int fromFront = p / 2;
+            int fromBack = (n / 2) - (p / 2);
 
-            for (int i = 0; i < n; i++)
-            {
-                primarySum += arr[i][i];
-                secondarySum += arr[i][n - 1 - i];
-            }
-
-            return Math.Abs(primarySum - secondarySum);
+            return Math.Min(fromFront, fromBack);
         }
     }
 
@@ -25,32 +17,13 @@ namespace HackerRank
     {
         public static void Main(string[] args)
         {
-            if (args.Length == 0)
-            {
-                RunLocalTests();
-            }
+            if (args.Length == 0) RunLocalTests();
         }
 
         private static void RunLocalTests()
         {
-            Console.WriteLine("Running local tests for Task 12 (Diagonal Difference)...");
-            
-            List<List<int>> matrix = new List<List<int>>
-            {
-                new List<int> { 11, 2, 4 },
-                new List<int> { 4, 5, 6 },
-                new List<int> { 10, 8, -12 }
-            };
-
-            int result = Result.diagonalDifference(matrix);
-            if (result == 15)
-            {
-                Console.WriteLine("Test 1 Passed!");
-            }
-            else
-            {
-                Console.WriteLine("Test 1 Failed!");
-            }
+            int result = Result.pageCount(6, 2);
+            Console.WriteLine(result == 1 ? "Test 1 Passed!" : "Test 1 Failed!");
         }
     }
 }

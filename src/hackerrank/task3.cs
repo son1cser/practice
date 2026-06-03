@@ -1,56 +1,37 @@
 using System;
+using System.Collections.Generic;
 
 namespace HackerRank
 {
-    public class Task3
+    public class Result
     {
-       
-        public static string[] GenerateStaircase(int n)
+        public static List<int> gradingStudents(List<int> grades)
         {
-            string[] lines = new string[n];
-            for (int i = 1; i <= n; i++)
-            {
-                string spaces = new string(' ', n - i);
-                string hashes = new string('#', i);
-                lines[i - 1] = spaces + hashes;
-                Console.WriteLine(lines[i - 1]);
-            }
-            return lines;
-        }
+            List<int> roundedGrades = new List<int>();
 
-        
-        public static void Main(string[] args)
-        {
-            if (args.Length == 0)
+            foreach (int grade in grades)
             {
-                
-                RunTests();
-            }
-            else
-            {
-               
-                int n = Convert.ToInt32(Console.ReadLine().Trim());
-                GenerateStaircase(n);
-            }
-        }
+                if (grade < 38)
+                {
+                    roundedGrades.Add(grade);
+                }
+                else
+                {
+                    
+                    int nextMultipleOfFive = ((grade / 5) + 1) * 5;
 
-        private static void RunTests()
-        {
-            Console.WriteLine("Running local tests...");
-            
-            
-            string[] result4 = GenerateStaircase(4);
-            if (result4[0] == "   #" && result4[3] == "####")
-            {
-                Console.WriteLine("Test 1 (n=4): PASSED");
+                    
+                    if (nextMultipleOfFive - grade < 3)
+                    {
+                        roundedGrades.Add(nextMultipleOfFive);
+                    }
+                    else
+                    {
+                        roundedGrades.Add(grade);
+                    }
+                }
             }
-            else
-            {
-                Console.WriteLine("Test 1 (n=4): FAILED");
-            }
-
-           
-            Console.WriteLine("All tests executed with 0 warnings.");
+            return roundedGrades;
         }
     }
 }

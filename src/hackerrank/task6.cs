@@ -33,7 +33,7 @@ namespace HackerRank
 
         private static void RunLocalTests()
         {
-            Console.WriteLine("Running local tests for Task 12 (Diagonal Difference)...");
+            Console.WriteLine("Running local tests for Task 8 (Diagonal Difference)...");
             
             List<List<int>> matrix = new List<List<int>>
             {
